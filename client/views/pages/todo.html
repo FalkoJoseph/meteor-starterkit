@@ -1,0 +1,31 @@
+<template name="TodoIndex">
+  {{> header}}
+
+  <h4>About</h4>
+  <p>
+    {{#each sampleArray}}
+      {{> sample}}
+    {{/each}}
+  </p>
+  <hr>
+  <h4>Tasks</h4>
+  <ul>
+    {{#each tasks}}
+      {{> task}}
+    {{/each}}
+  </ul>
+  <form class="new-task">
+    <input type="text" name="text" placeholder="Type to add new tasks" />
+  </form>
+</template>
+
+<template name="sample">
+  {{sampleTitle}}
+</template>
+
+<template name="task">
+  <li class="{{#if checked}}checked{{/if}}">
+    <button class="delete">&times;</button>
+    <input type="checkbox" checked="{{checked}}" class="toggle-checked" /> <span class="text">{{text}}</span>
+  </li>
+</template>

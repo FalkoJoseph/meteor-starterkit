@@ -1,0 +1,28 @@
+<template name="WelcomeIndex">
+  {{> header}}
+
+  Welcome!
+
+  <ul>
+    <li>
+      {{#linkTo class='link' route='welcome.show' _message='Hallo wereld, u bent fantastisch'}}
+        Bekijk: hallo wereld
+      {{/linkTo}}
+    </li>
+  </ul>
+</template>
+
+<template name="WelcomeShow">
+  {{> header}}
+
+  <h2>{{title}}</h2>
+  <p>{{message}}</p>
+
+  <ul>
+    <li>
+      {{#linkTo class='link' route='welcome'}}
+        Terug
+      {{/linkTo}}
+    </li>
+  </ul>
+</template>
