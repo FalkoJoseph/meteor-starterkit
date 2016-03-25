@@ -1,55 +1,74 @@
-if (Meteor.isClient) {
-  TodoController = ApplicationController.extend({
-    index: function () {
-      this.render('TodoIndex');
+// Subscriptions
+
+Meteor.subscribe('tasks');
+
+// Controller
+
+TodoController = ApplicationController.extend({
+  index: function () {
+    this.render('TodoIndex');
+  }
+});
+
+// Helpers
+
+Template.TodoIndex.helpers({
+  sampleArray: [
+    { sampleTitle: 'Javascript' },
+    { sampleTitle: 'is' },
+    { sampleTitle: 'sexy!' }
+  ],
+  tasks: function() {
+    if (Session.get('hideCompleted')) {
+      return Tasks.find({checked: {$ne: true}}, {sort: {createdAt: -1}});
+    } else {
+      return Tasks.find({}, {sort: {createdAt: -1}});
     }
-  });
+  },
+  hideCompleted: function () {
+    return Session.get('hideCompleted');
+  },
+  incompleteCount: function () {
+    return Tasks.find({checked: {$ne: true}}).count();
+  }
+});
 
-  Template.TodoIndex.helpers({
-    sampleArray: [
-      { sampleTitle: 'Javascript' },
-      { sampleTitle: 'is' },
-      { sampleTitle: 'sexy!' }
-    ],
-    tasks: function() {
-      if (Session.get('hideCompleted')) {
-        return Tasks.find({checked: {$ne: true}}, {sort: {createdAt: -1}});
-      } else {
-        return Tasks.find({}, {sort: {createdAt: -1}});
-      }
-    },
-    hideCompleted: function () {
-      return Session.get('hideCompleted');
-    },
-    incompleteCount: function () {
-      return Tasks.find({checked: {$ne: true}}).count();
-    }
-  });
+Template.task.helpers({
+  isOwner: function () {
+    return this.owner === Meteor.userId();
+  }
+});
 
-  Template.TodoIndex.events({
-    'submit .new-task': function (event) {
-      event.preventDefault();
-      var text = event.target.text.value;
+// Events
 
-      Meteor.call('addTask', text);
+Template.TodoIndex.events({
+  'submit .new-task': function (event) {
+    event.preventDefault();
+    var text = event.target.text.value;
 
-      event.target.text.value = '';
-    },
-    'change .hide-completed input': function (event) {
-      Session.set('hideCompleted', event.target.checked);
-    }
-  });
+    Meteor.call('addTask', text);
 
-  Template.task.events({
-    'click .toggle-checked': function () {
-      Meteor.call('setChecked', this._id, ! this.checked);
-    },
-    'click .delete': function () {
-      Meteor.call('deleteTask', this._id);
-    }
-  });
+    event.target.text.value = '';
+  },
+  'change .hide-completed input': function (event) {
+    Session.set('hideCompleted', event.target.checked);
+  }
+});
 
-  Accounts.ui.config({
-    passwordSignupFields: 'USERNAME_ONLY'
-  });
-}
+Template.task.events({
+  'click .toggle-checked': function () {
+    Meteor.call('setChecked', this._id, ! this.checked);
+  },
+  'click .delete': function () {
+    Meteor.call('deleteTask', this._id);
+  },
+  'click .toggle-private': function () {
+    Meteor.call('setPrivate', this._id, ! this.private);
+  }
+});
+
+// Packages
+
+Accounts.ui.config({
+  passwordSignupFields: 'USERNAME_ONLY'
+});

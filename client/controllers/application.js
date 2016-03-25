@@ -1,10 +1,9 @@
-if (Meteor.isClient) {
-  ApplicationController = RouteController.extend({
-    layoutTemplate: 'default',
+// Controller
 
-    onBeforeAction: function () {
-      // Before hook
-      this.next();
-    }
-  });
-}
+ApplicationController = RouteController.extend({
+  layoutTemplate: 'default',
+
+  onBeforeAction: function () {
+    this.next();
+  }
+});
