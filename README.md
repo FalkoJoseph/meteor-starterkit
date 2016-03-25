@@ -17,7 +17,7 @@ A Meteor boilerplate
 ### Further references
 
 - [Meteor SCSS](https://github.com/fourseven/meteor-scss)
-- [Iron Router](https://github.com/iron-meteor/iron-router)
+- [Iron Router](http://iron-meteor.github.io/iron-router)
 - [Meteor methods client side operations](https://www.discovermeteor.com/blog/meteor-methods-client-side-operations/)
 - [Meteor tutorial](http://meteortips.com/second-meteor-tutorial/)
 - [Learn MeteorJS properly](http://javascriptissexy.com/learn-meteor-js-properly/)

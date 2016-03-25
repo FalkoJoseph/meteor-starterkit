@@ -1,3 +1,7 @@
+Router.configure({
+  notFoundTemplate: '404'
+});
+
 Router.route('/', {
   name: 'home',
   //layoutTemplate: 'default'

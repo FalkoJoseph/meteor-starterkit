@@ -1,31 +1,31 @@
 <template name="TodoIndex">
   {{> header}}
 
-  <h4>About</h4>
+  {{#if currentUser}}
+    <h6>Logged in as: {{currentUser.username}}</h6>
+  {{/if}}
+
   <p>
     {{#each sampleArray}}
       {{> sample}}
     {{/each}}
   </p>
   <hr>
-  <h4>Tasks</h4>
+  <h6>Tasks ({{incompleteCount}})</h6>
   <ul>
     {{#each tasks}}
       {{> task}}
     {{/each}}
   </ul>
-  <form class="new-task">
-    <input type="text" name="text" placeholder="Type to add new tasks" />
-  </form>
-</template>
+  <label class="hide-completed">
+    <input type="checkbox" checked="{{hideCompleted}}" />
+    Hide Completed Tasks
+  </label>
+  {{> loginButtons}}
 
-<template name="sample">
-  {{sampleTitle}}
-</template>
-
-<template name="task">
-  <li class="{{#if checked}}checked{{/if}}">
-    <button class="delete">&times;</button>
-    <input type="checkbox" checked="{{checked}}" class="toggle-checked" /> <span class="text">{{text}}</span>
-  </li>
+  {{#if currentUser}}
+    <form class="new-task">
+      <input type="text" name="text" placeholder="Type to add new tasks" />
+    </form>
+  {{/if}}
 </template>
