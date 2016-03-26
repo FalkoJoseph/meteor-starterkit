@@ -22,6 +22,7 @@ Learning Meteor by building a starterkit and consistent file structure.
 - [Blaze](http://guide.meteor.com/blaze.html)
 - [Optimistic UI with Meteor latency compensation](http://info.meteor.com/blog/optimistic-ui-with-meteor-latency-compensation)
 - [Creating a custom login and registration form with Meteor](http://www.sitepoint.com/creating-custom-login-registration-form-with-meteor/)
+- [Meteor 1.3 changelog](https://github.com/meteor/meteor/blob/release-1.3/History.md)
 
 ### Inspired by
 
