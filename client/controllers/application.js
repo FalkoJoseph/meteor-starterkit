@@ -5,7 +5,7 @@ ApplicationController = RouteController.extend({
 
   onBeforeAction: function () {
     if (!Meteor.userId()) {
-      console.log('login screen can be showed here...');
+      console.log('Login screen can be showed here...');
       this.next();
     } else {
       this.next();
