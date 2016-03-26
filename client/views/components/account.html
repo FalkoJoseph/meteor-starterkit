@@ -1,4 +1,8 @@
 <template name="account">
+  {{#if flash}}
+    <p>{{flash}}</p>
+  {{/if}}
+
   {{#if currentUser}}
     {{> dashboard}}
   {{else}}
