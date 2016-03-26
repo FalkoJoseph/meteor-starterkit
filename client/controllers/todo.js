@@ -41,6 +41,12 @@ Template.task.helpers({
 
 // Events
 
+Template.task.onRendered(function(){
+  //this.$(obj).hide(); works too
+  this.$('li').hide();
+  this.$('li').fadeIn(150);
+});
+
 Template.TodoIndex.events({
   'submit .new-task': function (event) {
     event.preventDefault();
@@ -59,8 +65,11 @@ Template.task.events({
   'click .toggle-checked': function () {
     Meteor.call('setChecked', this._id, ! this.checked);
   },
-  'click .delete': function () {
-    Meteor.call('deleteTask', this._id);
+  'click .delete': function (event) {
+    var self = this;
+    $(event.target).parent().fadeOut(150, function() {
+      Meteor.call('deleteTask', self._id);
+    });
   },
   'click .toggle-private': function () {
     Meteor.call('setPrivate', this._id, ! this.private);
