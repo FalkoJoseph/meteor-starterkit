@@ -21,6 +21,7 @@ Learning Meteor by building a starterkit and consistent file structure.
 - [Introduction to realtime web meteor and NodeJS](https://www.andrewmunsell.com/blog/introduction-to-realtime-web-meteor-and-nodejs/)
 - [Blaze](http://guide.meteor.com/blaze.html)
 - [Optimistic UI with Meteor latency compensation](http://info.meteor.com/blog/optimistic-ui-with-meteor-latency-compensation)
+- [Creating a custom login and registration form with Meteor](http://www.sitepoint.com/creating-custom-login-registration-form-with-meteor/)
 
 ### Inspired by
 

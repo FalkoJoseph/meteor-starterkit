@@ -75,9 +75,3 @@ Template.task.events({
     Meteor.call('setPrivate', this._id, ! this.private);
   }
 });
-
-// Packages
-
-Accounts.ui.config({
-  passwordSignupFields: 'USERNAME_ONLY'
-});
